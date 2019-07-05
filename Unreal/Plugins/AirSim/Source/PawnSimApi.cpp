@@ -220,10 +220,11 @@ msr::airlib::RCData PawnSimApi::getRCData() const
     joystick_.getJoyStickState(getRemoteControlID(), joystick_state_);
 
     rc_data_.is_valid = joystick_state_.is_valid;
+    rc_data_.throttle = 1;
 
     if (rc_data_.is_valid) {
         //-1 to 1 --> 0 to 1
-        rc_data_.throttle = (joystick_state_.left_y + 1) / 2;
+        rc_data_.throttle = joystick_state_.left_y + 1;
 
         //-1 to 1
         rc_data_.yaw = joystick_state_.left_x;
